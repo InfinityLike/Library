@@ -1,0 +1,27 @@
+<!--<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-block">-->
+<div *ngIf="brandNew" class="alert alert-success" role="alert" style="text-align:center">
+    <strong>All set!</strong> Please login with your account
+</div>
+<form #f="ngForm" novalidate (ngSubmit)="login(f)" class="form-auth">
+    <h2 class="form-auth-heading">Login</h2>
+    <div class="form-group">
+        <input id="email" type="text" required name="email" [ngModel]="loginModel.email" #email="ngModel" tmFocus validateEmail class="form-control"
+               placeholder="Email address">
+    </div>
+    <div class="form-group">
+        <input id="password" type="password" required name="password" class="form-control" placeholder="Password" ngModel>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="f.invalid || isRequesting">Login</button>
+    </div>
+    <div *ngIf="errors" class="alert alert-danger" role="alert">
+        <strong>Oops!</strong> {{errors}}
+    </div>
+</form>
+<!--</div>
+        </div>
+    </div>
+</div>-->

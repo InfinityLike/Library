@@ -1,0 +1,30 @@
+<!--<div class="row">
+    <div class="col-md-2" role="navigation" style="border-right:1px solid #cecece">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="nav-item">
+                <a class="nav-link sidebar-menu-button" routerLinkActive="active-sidebar-link" routerLink='/dashboard/home'><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-10">
+        <router-outlet></router-outlet>
+    </div>
+</div>-->
+<div *ngIf="!isAdmin">
+    <navbar></navbar>
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<div class='container-fluid' *ngIf="isAdmin">
+    <div class='row'>
+        <div class='col-sm-3'>
+            <dashboard></dashboard>
+        </div>
+        <div class='col-sm-9 body-content'>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

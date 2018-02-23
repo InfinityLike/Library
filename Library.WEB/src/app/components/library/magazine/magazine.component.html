@@ -1,0 +1,28 @@
+<h1>Magazines</h1>
+<kendo-grid [data]="magazines"
+            [kendoGridGroupBinding]="magazines"
+            [groupable]="true"
+            [height]="550"
+            [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+            [pageable]="true" [sortable]="true"
+            (dataStateChange)="onStateChange($event)"
+            (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+            (save)="saveHandler($event)" (remove)="removeHandler($event)"
+            (add)="addHandler($event)"
+            [navigable]="true">
+    <ng-template kendoGridToolbarTemplate *ngIf="isAdmin">
+        <button kendoGridAddCommand class="k-primary">Add Magazine!</button>
+    </ng-template>
+    <kendo-grid-column field="id" title="Id"></kendo-grid-column>
+    <kendo-grid-column field="name" title="Name"></kendo-grid-column>
+    <kendo-grid-column field="number" editor="numeric" title="Number"></kendo-grid-column>
+    <kendo-grid-column field="yearOfPublishing" editor="numeric" title="Year of publishing" width="150"></kendo-grid-column>
+    <kendo-grid-command-column *ngIf="isAdmin" title="Commands" width="220">
+        <ng-template kendoGridCellTemplate let-isNew="isNew">
+            <button kendoGridEditCommand class="k-primary">Edit</button>
+            <button kendoGridRemoveCommand>Remove</button>
+            <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
+            <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+        </ng-template>
+    </kendo-grid-command-column>
+</kendo-grid>
