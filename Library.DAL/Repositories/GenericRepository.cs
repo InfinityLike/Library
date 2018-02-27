@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace Library.DAL.Repositories
 {
-    public class GenericRepository<TEntity>  where TEntity : class
+    public class GenericRepository<TEntity> where TEntity : class
     {
         protected readonly DbContext _context;
         protected readonly DbSet<TEntity> _dbSet;
@@ -25,11 +25,8 @@ namespace Library.DAL.Repositories
 
         public void Add(List<TEntity> items)
         {
-            foreach (var item in items)
-            {
-                _dbSet.Add(item);
-            }
-            _context.SaveChanges();            
+            _dbSet.AddRange(items);
+            _context.SaveChanges();
         }
 
         public virtual IEnumerable<TEntity> GetAll()
