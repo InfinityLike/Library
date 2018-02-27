@@ -4,11 +4,11 @@ namespace Library.ViewModels.Author
 {
     public class GetAuthorViewModel
     {
-        public List<AuthorViewModel> Authors { get; set; }
+        public List<GetAuthorViewItem> Authors { get; set; }
 
         public GetAuthorViewModel()
         {
-            Authors = new List<AuthorViewModel>();
+            Authors = new List<GetAuthorViewItem>();
         }
     }
 }

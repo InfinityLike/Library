@@ -4,7 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import { State, process } from '@progress/kendo-data-query';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { PublisherViewModel } from '../../../ViewModels/publisherViewModel';
+import { GetPublisherViewModel } from '../../../ViewModels/publisher/getPublisherViewModel';
+import { PostPublisherViewModel } from '../../../ViewModels/publisher/postPublisherViewModel';
+
+import { GetPublisherViewItem } from '../../../viewModels/publisher/getPublisherViewItem';
 
 import { PublisherService } from '../../../services/publisher.service';
 import { AccountService } from '../../../services/account.service';
@@ -14,7 +17,7 @@ import { AccountService } from '../../../services/account.service';
     templateUrl: './publisher.component.html'
 })
 export class PublisherComponent implements OnInit {
-    public publishers: Array<PublisherViewModel>;
+    public publishers: GetPublisherViewModel;
     public gridState: State = {
         sort: [],
         skip: 0,
@@ -26,7 +29,10 @@ export class PublisherComponent implements OnInit {
     public isAdmin = AccountService.isAdmin;
     public isLoggedIn = AccountService.isLoggedIn;
 
-    constructor(private publisherService: PublisherService) { }
+    constructor(private publisherService: PublisherService) {
+        this.publishers = new GetPublisherViewModel();
+        this.publishers.publishers = new Array<GetPublisherViewItem>();
+    }
 
     ngOnInit(): void {
         this.loadPublisherData();
@@ -67,7 +73,7 @@ export class PublisherComponent implements OnInit {
     }
 
     public saveHandler({ sender, rowIndex, formGroup, isNew }) {
-        const publisher: PublisherViewModel = formGroup.getRawValue();
+        const publisher: PostPublisherViewModel = formGroup.getRawValue();
         this.publisherService.save(publisher, isNew).subscribe(data => {
             this.loadPublisherData();
         });
@@ -88,7 +94,7 @@ export class PublisherComponent implements OnInit {
 
     private loadPublisherData() {
         this.publisherService.getPublishers().subscribe(
-            (data: Array<PublisherViewModel>) => {
+            (data: GetPublisherViewModel) => {
                 this.publishers = data;
             }
         );

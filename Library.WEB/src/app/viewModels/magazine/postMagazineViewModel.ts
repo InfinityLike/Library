@@ -1,4 +1,4 @@
-export class MagazineViewModel {
+export class PostMagazineViewModel {
     id: number
     name: string
     number: number

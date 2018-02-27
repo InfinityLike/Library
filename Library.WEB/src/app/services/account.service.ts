@@ -8,8 +8,8 @@ import { BehaviorSubject } from 'rxjs/Rx';
 
 import { ErrorService } from './error.service';
 
-import { LoginViewModel } from '../ViewModels/loginViewModel';
-import { RegisterViewModel } from '../ViewModels/registerViewModel';
+import { LoginViewModel } from '../ViewModels/account/loginViewModel';
+import { RegisterViewModel } from '../ViewModels/account/registerViewModel';
 
 @Injectable()
 export class AccountService extends ErrorService {

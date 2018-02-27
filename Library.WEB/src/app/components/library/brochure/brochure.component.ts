@@ -4,7 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import { State, process } from '@progress/kendo-data-query';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { BrochureViewModel } from '../../../ViewModels/brochureViewModel';
+import { GetBrochureViewModel } from '../../../ViewModels//brochure/getBrochureViewModel';
+import { PostBrochureViewModel } from '../../../ViewModels//brochure/postBrochureViewModel';
+
+import { GetBrochureViewItem } from '../../../viewModels/brochure/getBrochureViewItem';
 
 import { BrochureService } from '../../../services/brochure.service';
 import { AccountService } from '../../../services/account.service';
@@ -14,7 +17,7 @@ import { AccountService } from '../../../services/account.service';
     templateUrl: './brochure.component.html'
 })
 export class BrochureComponent implements OnInit {
-    public brochures: Array<BrochureViewModel>;
+    public brochures: GetBrochureViewModel;
     public coverType: Array<string>;
     public gridState: State = {
         sort: [],
@@ -27,7 +30,10 @@ export class BrochureComponent implements OnInit {
     public isAdmin = AccountService.isAdmin;
     public isLoggedIn = AccountService.isLoggedIn;
 
-    constructor(private brochureService: BrochureService) { }
+    constructor(private brochureService: BrochureService) {
+        this.brochures = new GetBrochureViewModel();
+        this.brochures.brochures = new Array<GetBrochureViewItem>();
+    }
 
     ngOnInit(): void {
         this.loadBrochureData();
@@ -70,7 +76,7 @@ export class BrochureComponent implements OnInit {
     }
 
     public saveHandler({ sender, rowIndex, formGroup, isNew }) {
-        const brochure: BrochureViewModel = formGroup.getRawValue();
+        const brochure: PostBrochureViewModel = formGroup.getRawValue();
         this.brochureService.save(brochure, isNew).subscribe(data => {
             this.loadBrochureData();
         });
@@ -91,7 +97,7 @@ export class BrochureComponent implements OnInit {
 
     private loadBrochureData() {
         this.brochureService.getBrochures().subscribe(
-            (data: Array<BrochureViewModel>) => {
+            (data: GetBrochureViewModel) => {
                 this.brochures = data;
             }
         );

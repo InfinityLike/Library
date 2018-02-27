@@ -1,4 +1,4 @@
-export class PublicationsViewModel {
+export class GetPublicationsViewItem {
     id: number
     name: string
     publicationType: string    

@@ -2,7 +2,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { LoginViewModel } from '../../../ViewModels/loginViewModel';
+import { LoginViewModel } from '../../../ViewModels/account/loginViewModel';
 
 import { AccountService } from '../../../services/account.service';
 

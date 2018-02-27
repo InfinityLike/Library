@@ -4,7 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { State, process } from '@progress/kendo-data-query';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { PublicationsViewModel } from '../../../ViewModels/publicationsViewModel';
+import { GetPublicationsViewModel } from '../../../ViewModels/publications/getPublicationsViewModel';
+
+import { GetPublicationsViewItem } from '../../../viewModels/publications/getPublicationsViewItem';
 
 import { PublicationsService } from '../../../services/publications.service';
 
@@ -13,7 +15,7 @@ import { PublicationsService } from '../../../services/publications.service';
     templateUrl: './publications.component.html'
 })
 export class PublicationsComponent implements OnInit {
-    public publications: Array<PublicationsViewModel>;
+    public publications: GetPublicationsViewModel;
     public gridState: State = {
         sort: [],
         skip: 0,
@@ -22,12 +24,15 @@ export class PublicationsComponent implements OnInit {
     public formGroup: FormGroup;
     private editedRowIndex: number;
 
-    constructor(private publicationsService: PublicationsService) { }
+    constructor(private publicationsService: PublicationsService) {
+        this.publications = new GetPublicationsViewModel();
+        this.publications.publications = new Array<GetPublicationsViewItem>();
+    }
 
     ngOnInit(): void {
 
         this.publicationsService.getPublications().subscribe(
-            (data: Array<PublicationsViewModel>) => {
+            (data: GetPublicationsViewModel) => {
                 this.publications = data;
             }
         );

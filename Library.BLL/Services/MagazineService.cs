@@ -27,7 +27,7 @@ namespace Library.BLL.Services
         {
             var magazineEntities = _magazineRepository.GetAll();
             var magazineViews = new GetMagazineViewModel();
-            magazineViews.Magazines = Mapper.Map<IEnumerable<Magazine>, List<MagazineViewModel>>(magazineEntities);
+            magazineViews.Magazines = Mapper.Map<IEnumerable<Magazine>, List<GetMagazineViewItem>>(magazineEntities);
             return magazineViews;
         }
 

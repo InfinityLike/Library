@@ -1,6 +1,6 @@
 ﻿namespace Library.ViewModels.Publication
 {
-    public class PublicationViewModel
+    public class GetPublicationViewItem
     {
         public int Id { get; set; }
 

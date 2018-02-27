@@ -4,11 +4,11 @@ namespace Library.ViewModels.Brochure
 {
     public class GetBrochureViewModel
     {
-        public List<BrochureViewModel> Brochures { get; set; }
+        public List<GetBrochureViewItem> Brochures { get; set; }
 
         public GetBrochureViewModel()
         {
-            Brochures = new List<BrochureViewModel>();
+            Brochures = new List<GetBrochureViewItem>();
         }
     }
 }

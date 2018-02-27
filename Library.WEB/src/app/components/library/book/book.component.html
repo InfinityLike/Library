@@ -1,6 +1,6 @@
 <h1>Books</h1>
-<kendo-grid [data]="books"
-            [kendoGridGroupBinding]="books"
+<kendo-grid [data]="books.books"
+            [kendoGridGroupBinding]="books.books"
             [groupable]="true"
             [height]="550"
             [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
@@ -30,7 +30,7 @@
                      let-dataItem="dataItem"
                      let-column="column"
                      let-formGroup="formGroup">
-            <kendo-multiselect [data]="authorsData"
+            <kendo-multiselect [data]="authorsData.authors"
                                [textField]="'name'"
                                [valueField]="'name'"
                                [formControl]="formGroup.get('authors')">
@@ -68,7 +68,7 @@
                      let-dataItem="dataItem"
                      let-column="column"
                      let-formGroup="formGroup">
-            <kendo-multiselect [data]="publishersData"
+            <kendo-multiselect [data]="publishersData.publishers"
                                [textField]="'name'"
                                [valueField]="'name'"
                                [formControl]="formGroup.get('publishers')">

@@ -20,7 +20,7 @@ namespace Library.WEB.Controllers
         public IActionResult Get()
         {
             var brochures = _brochureService.GetAll();
-            return Ok(brochures.Brochures);
+            return Ok(brochures);
         }
 
         [Authorize(Roles = "admin")]

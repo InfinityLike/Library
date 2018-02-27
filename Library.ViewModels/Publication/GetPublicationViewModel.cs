@@ -4,11 +4,11 @@ namespace Library.ViewModels.Publication
 {
     public class GetPublicationViewModel
     {
-        public List<PublicationViewModel> Publications { get; set; }
+        public List<GetPublicationViewItem> Publications { get; set; }
 
         public GetPublicationViewModel()
         {
-            Publications = new List<PublicationViewModel>();
+            Publications = new List<GetPublicationViewItem>();
         }
     }
 }

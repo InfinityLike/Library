@@ -4,17 +4,19 @@ import { Observable } from 'rxjs/Observable';
 import { State, process } from '@progress/kendo-data-query';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { AuthorViewModel } from '../../../ViewModels/authorViewModel';
+import { GetAuthorViewModel } from '../../../ViewModels/author/getAuthorViewModel';
+import { PostAuthorViewModel } from '../../../ViewModels/author/postAuthorViewModel';
 
 import { AuthorService } from '../../../services/author.service';
 import { AccountService } from '../../../services/account.service';
+import { GetAuthorViewItem } from '../../../viewModels/author/getAuthorViewItem';
 
 @Component({
     selector: 'author',
     templateUrl: './author.component.html'
 })
 export class AuthorComponent implements OnInit {
-    public authors: Array<AuthorViewModel>;
+    public authors: GetAuthorViewModel;
     public gridState: State = {
         sort: [],
         skip: 0,
@@ -26,7 +28,10 @@ export class AuthorComponent implements OnInit {
     public isAdmin = AccountService.isAdmin;
     public isLoggedIn = AccountService.isLoggedIn;
 
-    constructor(private authorService: AuthorService) { }
+    constructor(private authorService: AuthorService) {
+        this.authors = new GetAuthorViewModel();
+        this.authors.authors = new Array<GetAuthorViewItem>();
+    }
 
     ngOnInit(): void {
         this.loadAuthorData();
@@ -65,7 +70,7 @@ export class AuthorComponent implements OnInit {
     }
 
     public saveHandler({ sender, rowIndex, formGroup, isNew }) {
-        const author: AuthorViewModel = formGroup.getRawValue();
+        const author: PostAuthorViewModel = formGroup.getRawValue();
         this.authorService.save(author, isNew).subscribe(data => {
             this.loadAuthorData();
         });
@@ -86,7 +91,7 @@ export class AuthorComponent implements OnInit {
 
     private loadAuthorData() {
         this.authorService.getAuthors().subscribe(
-            (data: Array<AuthorViewModel>) => {
+            (data: GetAuthorViewModel) => {
                 this.authors = data;
             }
         );

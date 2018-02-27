@@ -25,7 +25,7 @@ namespace Library.BLL.Services
         {
             var publisherEntities = _publisherRepository.GetAll();
             var publisherViews = new GetPublisherViewModel();
-            publisherViews.Publishers = Mapper.Map<IEnumerable<Publisher>, List<PublisherViewModel>>(publisherEntities);
+            publisherViews.Publishers = Mapper.Map<IEnumerable<Publisher>, List<GetPublisherViewItem>>(publisherEntities);
             return publisherViews;
         }
 

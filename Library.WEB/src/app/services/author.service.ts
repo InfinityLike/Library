@@ -3,19 +3,20 @@ import { HttpClient } from "@angular/common/http";
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
-import { AuthorViewModel } from '../ViewModels/authorViewModel';
+import { GetAuthorViewModel } from '../ViewModels/author/getAuthorViewModel';
+import { PostAuthorViewModel } from '../viewModels/author/postAuthorViewModel';
 
 @Injectable()
 export class AuthorService {
     constructor(private http: HttpClient) { }
 
-    public getAuthors(): Observable<AuthorViewModel[]> {
+    public getAuthors(): Observable<GetAuthorViewModel> {
         return this.http.get('api/author').map((response) => {
-            return <AuthorViewModel[]>response;
+            return <GetAuthorViewModel>response;
         });;
     }
 
-    public save(data: AuthorViewModel, isNew?: boolean): Observable<boolean> {
+    public save(data: PostAuthorViewModel, isNew?: boolean): Observable<boolean> {
         if (isNew) {
             return this.http.post('api/author', data)
                 .map(x => x as boolean);

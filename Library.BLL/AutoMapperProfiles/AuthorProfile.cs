@@ -9,7 +9,7 @@ namespace Library.BLL.AutoMapperProfiles
     {
         public AuthorProfile()
         {
-            CreateMap<Author, AuthorViewModel>()
+            CreateMap<Author, GetAuthorViewItem>()
                     .ReverseMap();
             CreateMap<Author, PostAuthorViewModel>()
                     .ReverseMap();

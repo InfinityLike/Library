@@ -39,16 +39,16 @@ namespace Library.BLL.Services
 
         public GetBookViewModel GetAll()
         {
-            var bookViews = new List<BookViewModel>();
+            var bookViews = new List<GetBookViewItem>();
             var bookPublishers = _bookPublisherRepository.GetAll().GroupBy(x => x.Book);
             var bookAuthors = _bookAuthorRepository.GetAll().GroupBy(x => x.Book);
 
             foreach (var bookPublisher in bookPublishers)
             {
-                BookViewModel bookViewModel = Mapper.Map<BookViewModel>(bookPublisher.Key);
+                GetBookViewItem bookViewModel = Mapper.Map<GetBookViewItem>(bookPublisher.Key);
 
                 var publishers = bookPublisher.Select(a => a.Publisher);
-                var publishersViewModel = Mapper.Map<List<PublisherViewModel>>(publishers);
+                var publishersViewModel = Mapper.Map<List<GetPublisherViewItem>>(publishers);
                
                 bookViewModel.Publishers.AddRange(publishersViewModel);
                 bookViews.Add(bookViewModel);
@@ -59,7 +59,7 @@ namespace Library.BLL.Services
                 var bookViewModel = bookViews.Where(x => x.Id == bookAuthor.Key.Id).SingleOrDefault();
 
                 var authors = bookAuthor.Select(a => a.Author);
-                var authorsViewModel = Mapper.Map<List<AuthorViewModel>>(authors);
+                var authorsViewModel = Mapper.Map<List<GetAuthorViewItem>>(authors);
 
                 bookViewModel.Authors.AddRange(authorsViewModel);
             }
@@ -88,7 +88,7 @@ namespace Library.BLL.Services
             AddRelationshipsBookAuthor(book, bookView.Authors);
         }
 
-        private void AddRelationshipsBookPublisher(Book book, List<PublisherViewModel> publishers)
+        private void AddRelationshipsBookPublisher(Book book, List<GetPublisherViewItem> publishers)
         {
             List<BookPublisher> bookPublishers = new List<BookPublisher>();
 
@@ -103,7 +103,7 @@ namespace Library.BLL.Services
             _bookPublisherRepository.Add(bookPublishers);
         }
 
-        private void AddRelationshipsBookAuthor(Book book, List<AuthorViewModel> authors)
+        private void AddRelationshipsBookAuthor(Book book, List<GetAuthorViewItem> authors)
         {
             List<BookAuthor> bookAuthors = new List<BookAuthor>();
 

@@ -4,11 +4,11 @@ namespace Library.ViewModels.Magazine
 {
     public class GetMagazineViewModel
     {
-        public List<MagazineViewModel> Magazines { get; set; }
+        public List<GetMagazineViewItem> Magazines { get; set; }
 
         public GetMagazineViewModel()
         {
-            Magazines = new List<MagazineViewModel>();
+            Magazines = new List<GetMagazineViewItem>();
         }
     }
 }

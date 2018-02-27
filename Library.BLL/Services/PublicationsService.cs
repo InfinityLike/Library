@@ -24,15 +24,15 @@ namespace Library.BLL.Services
 
         public GetPublicationViewModel GetAll()
         {
-            var publicationView = new List<PublicationViewModel>();
+            var publicationView = new List<GetPublicationViewItem>();
 
             var bookEntities = _bookRepository.GetAll();
             var magazineEntities = _magazineRepository.GetAll();
             var brochureEntities = _brochureRepository.GetAll();
 
-            var bookViews = Mapper.Map<IEnumerable<Book>, List<BookViewModel>>(bookEntities);
-            var magazineViews = Mapper.Map<IEnumerable<Magazine>, List<MagazineViewModel>>(magazineEntities);
-            var brochureViews = Mapper.Map<IEnumerable<Brochure>, List<BrochureViewModel>>(brochureEntities);
+            var bookViews = Mapper.Map<IEnumerable<Book>, List<GetBookViewItem>>(bookEntities);
+            var magazineViews = Mapper.Map<IEnumerable<Magazine>, List<GetMagazineViewItem>>(magazineEntities);
+            var brochureViews = Mapper.Map<IEnumerable<Brochure>, List<GetBrochureViewItem>>(brochureEntities);
 
             publicationView.AddRange(bookViews);
             publicationView.AddRange(magazineViews);

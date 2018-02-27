@@ -2,7 +2,7 @@
 
 namespace Library.ViewModels.Brochure
 {
-    public class PostBrochureViewModel : PublicationViewModel
+    public class PostBrochureViewModel : GetPublicationViewItem
     {
         public string CoverType { get; set; }
 

@@ -25,7 +25,7 @@ namespace Library.BLL.Services
         {
             var authorEntities = _authorRepository.GetAll();
             var authorViews = new GetAuthorViewModel();
-            authorViews.Authors = Mapper.Map<IEnumerable<Author>, List<AuthorViewModel>>(authorEntities);
+            authorViews.Authors = Mapper.Map<IEnumerable<Author>, List<GetAuthorViewItem>>(authorEntities);
             return authorViews;
         }
 

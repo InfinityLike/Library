@@ -8,7 +8,7 @@ namespace Library.BLL.AutoMapperProfiles
     {
         public PublisherProfile()
         {
-            CreateMap<Publisher, PublisherViewModel>()
+            CreateMap<Publisher, GetPublisherViewItem>()
                 .ReverseMap();
             CreateMap<Publisher, PostPublisherViewModel>()
                 .ReverseMap();

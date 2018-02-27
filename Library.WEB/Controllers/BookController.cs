@@ -21,7 +21,7 @@ namespace Library.WEB.Controllers
         public IActionResult Get()
         {
             var books = _bookService.GetAll();
-            return Ok(books.Books);
+            return Ok(books);
         }
 
         [Authorize(Roles = "admin")]

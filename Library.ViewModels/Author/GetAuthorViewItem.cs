@@ -1,6 +1,6 @@
 ﻿namespace Library.ViewModels.Author
 {
-    public class AuthorViewModel
+    public class GetAuthorViewItem
     {
         public int Id { get; set; }
 

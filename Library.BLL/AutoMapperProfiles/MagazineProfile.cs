@@ -8,7 +8,7 @@ namespace Library.BLL.AutoMapperProfiles
     {
         public MagazineProfile()
         {
-            CreateMap<Magazine, MagazineViewModel>()
+            CreateMap<Magazine, GetMagazineViewItem>()
                 .ReverseMap();
             CreateMap<Magazine, PostMagazineViewModel>()
                 .ReverseMap();

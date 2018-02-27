@@ -1,4 +1,4 @@
-export class AuthorViewModel {
+export class GetAuthorViewItem {
     id: number
     name: string
 }

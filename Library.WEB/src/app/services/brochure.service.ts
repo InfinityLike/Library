@@ -3,15 +3,16 @@ import { HttpClient } from "@angular/common/http";
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
-import { BrochureViewModel } from '../ViewModels/brochureViewModel';
+import { GetBrochureViewModel } from '../ViewModels/brochure/getBrochureViewModel';
+import { PostBrochureViewModel } from '../ViewModels/brochure/postBrochureViewModel';
 
 @Injectable()
 export class BrochureService {
     constructor(private http: HttpClient) { }
 
-    public getBrochures(): Observable<BrochureViewModel[]> {
+    public getBrochures(): Observable<GetBrochureViewModel> {
         return this.http.get('api/brochure').map((response) => {
-            return <BrochureViewModel[]>response;
+            return <GetBrochureViewModel>response;
         });;
     }
 
@@ -21,7 +22,7 @@ export class BrochureService {
         });;
     }
 
-    public save(data: BrochureViewModel, isNew?: boolean): Observable<boolean> {
+    public save(data: PostBrochureViewModel, isNew?: boolean): Observable<boolean> {
         if (isNew) {
             return this.http.post('api/brochure', data)
                 .map(x => x as boolean);

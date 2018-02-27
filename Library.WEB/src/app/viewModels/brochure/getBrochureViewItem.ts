@@ -1,4 +1,4 @@
-export class BrochureViewModel {
+export class GetBrochureViewItem {
     id: number
     name: string
     coverType: string

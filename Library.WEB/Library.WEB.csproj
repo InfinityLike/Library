@@ -44,13 +44,24 @@
         <None Remove="src\app\services\publications.service.ts" />
         <None Remove="src\app\services\publisher.service.ts" />
         <None Remove="src\app\viewModels\authorViewModel.ts" />
+        <None Remove="src\app\viewModels\author\getAuthorViewModel.ts" />
+        <None Remove="src\app\viewModels\author\postAuthorViewModel.ts" />
         <None Remove="src\app\viewModels\bookViewModel.ts" />
+        <None Remove="src\app\viewModels\book\getBookViewModel.ts" />
+        <None Remove="src\app\viewModels\book\postBookViewModel.ts" />
         <None Remove="src\app\viewModels\brochureViewModel.ts" />
         <None Remove="src\app\services\brochure.service.ts" />
+        <None Remove="src\app\viewModels\brochure\getBrochureViewModel.ts" />
+        <None Remove="src\app\viewModels\brochure\postBrochureViewModel.ts" />
         <None Remove="src\app\viewModels\loginViewModel.ts" />
         <None Remove="src\app\viewModels\magazineViewModel.ts" />
+        <None Remove="src\app\viewModels\magazine\getMagazineViewModel.ts" />
+        <None Remove="src\app\viewModels\magazine\postMagazineViewModel.ts" />
         <None Remove="src\app\viewModels\publicationsViewModel.ts" />
+        <None Remove="src\app\viewModels\publications\getPublicationsViewModel.ts" />
         <None Remove="src\app\viewModels\publisherViewModel.ts" />
+        <None Remove="src\app\viewModels\publisher\getPublisherViewModel.ts" />
+        <None Remove="src\app\viewModels\publisher\postPublisherViewModel.ts" />
         <None Remove="src\app\viewModels\registerViewModel.ts" />
     </ItemGroup>
 
@@ -95,16 +106,27 @@
         <TypeScriptCompile Include="src\app\services\magazine.service.ts" />
         <TypeScriptCompile Include="src\app\services\publications.service.ts" />
         <TypeScriptCompile Include="src\app\services\publisher.service.ts" />
-        <TypeScriptCompile Include="src\app\viewModels\authorViewModel.ts" />
-        <TypeScriptCompile Include="src\app\viewModels\bookViewModel.ts" />
-        <TypeScriptCompile Include="src\app\viewModels\brochureViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\author\getAuthorViewItem.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\author\getAuthorViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\author\postAuthorViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\book\getBookViewItem.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\book\getBookViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\book\postBookViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\brochure\getBrochureViewItem.ts" />
         <TypeScriptCompile Include="src\app\services\book.service.ts" />
-        <TypeScriptCompile Include="src\app\viewModels\loginViewModel.ts" />
-        <TypeScriptCompile Include="src\app\viewModels\magazineViewModel.ts" />
-        <TypeScriptCompile Include="src\app\viewModels\publicationsViewModel.ts" />
-        <TypeScriptCompile Include="src\app\viewModels\publisherViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\account\loginViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\brochure\getBrochureViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\brochure\postBrochureViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\magazine\getMagazineViewItem.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\magazine\getMagazineViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\magazine\postMagazineViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\publications\getPublicationsViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\publications\getPublicationsViewItem.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\publisher\getPublisherViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\publisher\getPublisherViewItem.ts" />
         <TypeScriptCompile Include="src\app\services\brochure.service.ts" />
-        <TypeScriptCompile Include="src\app\viewModels\registerViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\account\registerViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\publisher\postPublisherViewModel.ts" />
     </ItemGroup>
 
     <ItemGroup>

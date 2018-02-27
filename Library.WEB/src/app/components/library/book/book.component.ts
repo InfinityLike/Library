@@ -5,9 +5,17 @@ import { State, process } from '@progress/kendo-data-query';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
-import { BookViewModel } from '../../../ViewModels/bookViewModel';
-import { PublisherViewModel } from '../../../ViewModels/publisherViewModel';
-import { AuthorViewModel } from '../../../ViewModels/authorViewModel';
+import { GetBookViewModel } from '../../../ViewModels/book/getBookViewModel';
+import { GetPublisherViewModel } from '../../../ViewModels/publisher/getPublisherViewModel';
+import { GetAuthorViewModel } from '../../../ViewModels/author/getAuthorViewModel';
+
+import { GetBookViewItem } from '../../../viewModels/book/getBookViewItem';
+import { GetPublisherViewItem } from '../../../viewModels/publisher/getPublisherViewItem';
+import { GetAuthorViewItem } from '../../../viewModels/author/getAuthorViewItem';
+
+import { PostBookViewModel } from '../../../ViewModels/book/postBookViewModel';
+import { PostPublisherViewModel } from '../../../ViewModels/publisher/postPublisherViewModel';
+import { PostAuthorViewModel } from '../../../ViewModels/author/postAuthorViewModel';
 
 import { BookService } from '../../../services/book.service';
 import { PublisherService } from '../../../services/publisher.service';
@@ -19,9 +27,10 @@ import { AuthorService } from '../../../services/author.service';
     templateUrl: './book.component.html'
 })
 export class BookComponent implements OnInit {
-    public books: Array<BookViewModel>;
-    public publishersData: Array<PublisherViewModel>;
-    public authorsData: Array<AuthorViewModel>
+    public books: GetBookViewModel;
+    public publishersData: GetPublisherViewModel;
+    public authorsData: GetAuthorViewModel;
+
     public gridState: State = {
         sort: [],
         skip: 0,
@@ -35,7 +44,14 @@ export class BookComponent implements OnInit {
 
     constructor(private bookService: BookService,
         private publisherService: PublisherService,
-        private authorService: AuthorService) { }
+        private authorService: AuthorService) {
+        this.books = new GetBookViewModel();
+        this.books.books = new Array<GetBookViewItem>();
+        this.publishersData = new GetPublisherViewModel();
+        this.publishersData.publishers = new Array<GetPublisherViewItem>();
+        this.authorsData = new GetAuthorViewModel();
+        this.authorsData.authors = new Array<GetAuthorViewItem>();
+    }
 
     ngOnInit() {
         this.loadBookData();
@@ -80,7 +96,7 @@ export class BookComponent implements OnInit {
     }
 
     public saveHandler({ sender, rowIndex, formGroup, isNew }) {
-        const book: BookViewModel = formGroup.getRawValue();
+        const book: PostBookViewModel = formGroup.getRawValue();
 
         var oldDate = new Date(book.dateOfPublishing);
         var date = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 12, 0, 0);
@@ -106,7 +122,7 @@ export class BookComponent implements OnInit {
 
     private loadBookData() {
         this.bookService.getBooks().subscribe(
-            (data: Array<BookViewModel>) => {
+            (data: GetBookViewModel) => {
                 this.books = data;
             }
         );
@@ -114,7 +130,7 @@ export class BookComponent implements OnInit {
 
     private loadPublisherData() {
         this.publisherService.getPublishers().subscribe(
-            (data: Array<PublisherViewModel>) => {
+            (data: GetPublisherViewModel) => {
                 this.publishersData = data;
             }
         );
@@ -122,7 +138,7 @@ export class BookComponent implements OnInit {
 
     private loadAuthorData() {
         this.authorService.getAuthors().subscribe(
-            (data: Array<AuthorViewModel>) => {
+            (data: GetAuthorViewModel) => {
                 this.authorsData = data;
             }
         );

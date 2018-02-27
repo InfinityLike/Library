@@ -27,7 +27,7 @@ namespace Library.BLL.Services
         {
             var brochureEntities = _brochureRepository.GetAll();
             var brochureViews = new GetBrochureViewModel();
-            brochureViews.Brochures = Mapper.Map<IEnumerable<Brochure>, List<BrochureViewModel>>(brochureEntities);
+            brochureViews.Brochures = Mapper.Map<IEnumerable<Brochure>, List<GetBrochureViewItem>>(brochureEntities);
             return brochureViews;
         }
 

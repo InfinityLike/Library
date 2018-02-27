@@ -6,7 +6,10 @@ import { Observable } from 'rxjs/Observable';
 
 import { State, process } from '@progress/kendo-data-query';
 
-import { MagazineViewModel } from '../../../ViewModels/magazineViewModel';
+import { GetMagazineViewModel } from '../../../ViewModels/magazine/getMagazineViewModel';
+import { PostMagazineViewModel } from '../../../ViewModels/magazine/postMagazineViewModel';
+
+import { GetMagazineViewItem } from '../../../viewModels/magazine/getMagazineViewItem';
 
 import { MagazineService } from '../../../services/magazine.service';
 import { AccountService } from '../../../services/account.service';
@@ -16,8 +19,7 @@ import { AccountService } from '../../../services/account.service';
     templateUrl: './magazine.component.html'
 })
 export class MagazineComponent implements OnInit {
-    private data: Array<MagazineViewModel> = [];
-    public magazines: Array<MagazineViewModel>;
+    public magazines: GetMagazineViewModel;
     public gridState: State = {
         sort: [],
         skip: 0,
@@ -29,7 +31,10 @@ export class MagazineComponent implements OnInit {
     public isAdmin = AccountService.isAdmin;
     public isLoggedIn = AccountService.isLoggedIn;
 
-    constructor(private magazineService: MagazineService) { }
+    constructor(private magazineService: MagazineService) {
+        this.magazines = new GetMagazineViewModel();
+        this.magazines.magazines = new Array<GetMagazineViewItem>();
+    }
 
     ngOnInit(): void {
         this.loadMagazineData();
@@ -71,7 +76,7 @@ export class MagazineComponent implements OnInit {
     }
 
     public saveHandler({ sender, rowIndex, formGroup, isNew }) {
-        const magazine: MagazineViewModel = formGroup.getRawValue();
+        const magazine: PostMagazineViewModel = formGroup.getRawValue();
 
         var oldDate = new Date(magazine.dateOfPublishing);
         var date = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 12, 0, 0);
@@ -97,7 +102,7 @@ export class MagazineComponent implements OnInit {
 
     private loadMagazineData() {
         this.magazineService.getMagazines().subscribe(
-            (data: Array<MagazineViewModel>) => {
+            (data: GetMagazineViewModel) => {
                 this.magazines = data;
             }
         );

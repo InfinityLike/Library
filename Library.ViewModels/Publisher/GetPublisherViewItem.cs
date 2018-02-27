@@ -1,6 +1,6 @@
 ﻿namespace Library.ViewModels.Publisher
 {
-    public class PublisherViewModel
+    public class GetPublisherViewItem
     {
         public int Id { get; set; }
 
