@@ -2,7 +2,6 @@
 using Library.DAL.Repositories;
 using Library.Entities.Enums;
 using Library.Entities.Models;
-using Library.ViewModels;
 using Library.ViewModels.Brochure;
 using System.Collections.Generic;
 
@@ -26,8 +25,9 @@ namespace Library.BLL.Services
 
         public IEnumerable<GetBrochureViewModel> GetAll()
         {
-            var result = Mapper.Map<IEnumerable<Brochure>, List<GetBrochureViewModel>>(_brochureRepository.GetAll());
-            return result;
+            var brochureEntities = _brochureRepository.GetAll();
+            var brochureViews = Mapper.Map<IEnumerable<Brochure>, List<GetBrochureViewModel>>(brochureEntities);
+            return brochureViews;
         }
 
         public void Remove(int id)

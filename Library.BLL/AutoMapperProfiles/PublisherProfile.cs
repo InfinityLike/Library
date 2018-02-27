@@ -8,10 +8,12 @@ namespace Library.BLL.AutoMapperProfiles
     {
         public PublisherProfile()
         {
-            CreateMap<Publisher, GetPublisherViewModel>();
-            CreateMap<Publisher, PostPublisherViewModel>();
-            CreateMap<Publisher, PutPublisherViewModel>();
-                //.ForMember(a => a.Books, opt => opt.MapFrom(x => x.Books.Select(y => y.Book).ToList()));
+            CreateMap<Publisher, GetPublisherViewModel>()
+                .ReverseMap();
+            CreateMap<Publisher, PostPublisherViewModel>()
+                .ReverseMap();
+            CreateMap<Publisher, PutPublisherViewModel>()
+                .ReverseMap();
         }
     }
 }

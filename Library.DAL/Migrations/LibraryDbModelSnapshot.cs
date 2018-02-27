@@ -21,22 +21,45 @@ namespace Library.DAL.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Library.Entities.Models.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Authors");
+                });
+
             modelBuilder.Entity("Library.Entities.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Author");
+                    b.Property<DateTime>("DateOfPublishing");
 
                     b.Property<string>("Name");
 
                     b.Property<int>("TypeOfPublication");
 
-                    b.Property<int>("YearOfPublishing");
-
                     b.HasKey("Id");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("Library.Entities.Models.BookAuthor", b =>
+                {
+                    b.Property<int>("AuthorId");
+
+                    b.Property<int>("BookId");
+
+                    b.HasKey("AuthorId", "BookId");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("BookAuthor");
                 });
 
             modelBuilder.Entity("Library.Entities.Models.BookPublisher", b =>
@@ -75,13 +98,13 @@ namespace Library.DAL.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("DateOfPublishing");
+
                     b.Property<string>("Name");
 
                     b.Property<int>("Number");
 
                     b.Property<int>("TypeOfPublication");
-
-                    b.Property<int>("YearOfPublishing");
 
                     b.HasKey("Id");
 
@@ -261,6 +284,19 @@ namespace Library.DAL.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Library.Entities.Models.BookAuthor", b =>
+                {
+                    b.HasOne("Library.Entities.Models.Author", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Library.Entities.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Library.Entities.Models.BookPublisher", b =>

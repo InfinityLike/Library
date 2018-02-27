@@ -36,7 +36,6 @@ export class BrochureComponent implements OnInit {
 
     public onStateChange(state: State) {
         this.gridState = state;
-        //this.service.query(state) or this.editService.read();
     }
 
     public addHandler({ sender }) {

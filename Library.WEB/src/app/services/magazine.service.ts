@@ -18,19 +18,19 @@ export class MagazineService {
         });;
     }
 
-    public save(data: any, isNew?: boolean): Observable<any> {
+    public save(data: MagazineViewModel, isNew?: boolean) {
         if (isNew) {
             return this.http.post('api/magazine', data)
-                .map(data => data as any);
+                .map(data => data);
         }
         if (!isNew) {
             return this.http.put('api/magazine/' + data.id, data)
-                .map(data => data as any);
+                .map(data => data);
         }
     }
 
-    public remove(id): Observable<any> {
+    public remove(id) {
         return this.http.delete('api/magazine/' + id)
-            .map(data => data as any);
+            .map(data => data);
     }
 }

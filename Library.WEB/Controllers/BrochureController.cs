@@ -3,8 +3,6 @@ using Library.ViewModels.Brochure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Library.WEB.Controllers
 {
     [Route("api/[controller]")]
@@ -16,8 +14,7 @@ namespace Library.WEB.Controllers
         {
             _brochureService = new BrochureService();
         }
-
-        // GET: api/<controller>
+        
         [Authorize]
         [HttpGet]
         public IActionResult Get()
@@ -26,7 +23,6 @@ namespace Library.WEB.Controllers
             return Ok(brochures);
         }
 
-        // POST api/<controller>
         [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Post([FromBody]PostBrochureViewModel brochure)
@@ -34,8 +30,7 @@ namespace Library.WEB.Controllers
             _brochureService.Add(brochure);
             return Ok();
         }
-
-        // PUT api/<controller>/5
+        
         [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]PutBrochureViewModel brochure)
@@ -43,8 +38,7 @@ namespace Library.WEB.Controllers
             _brochureService.Update(brochure);
             return Ok();
         }
-
-        // DELETE api/<controller>/5
+        
         [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

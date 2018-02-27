@@ -21,19 +21,19 @@ export class BrochureService {
         });;
     }
 
-    public save(data: any, isNew?: boolean): Observable<any> {
+    public save(data: BrochureViewModel, isNew?: boolean) {
         if (isNew) {
             return this.http.post('api/brochure', data)
-                .map(data => data as any);
+                .map(data => data);
         }
         if (!isNew) {
             return this.http.put('api/brochure/' + data.id, data)
-                .map(data => data as any);
+                .map(data => data);
         }
     }
 
-    public remove(id): Observable<any> {
+    public remove(id) {
         return this.http.delete('api/brochure/' + id)
-            .map(data => data as any);
+            .map(data => data);
     }
 }

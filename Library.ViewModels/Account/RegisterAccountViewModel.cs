@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Library.ViewModels
+namespace Library.ViewModels.Account
 {
-    public class PostRegisterUserViewModel
+    public class RegisterAccountViewModel
     {
         public string Email { get; set; }
 

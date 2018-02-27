@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
         AccountService.isAdmin = this.cookie.get("isAdmin") === "true";
     }
 
-    ngOnInit() {
-    
+    ngOnInit() {    
     }
 }

@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 namespace Library.Entities.Models
 {
     public class Book : Publication
     {
-        public string Author { get; set; }
-
-        public int YearOfPublishing { get; set; }
+        public DateTime DateOfPublishing { get; set; }
     }
 }

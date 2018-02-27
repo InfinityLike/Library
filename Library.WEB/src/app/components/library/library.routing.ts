@@ -8,6 +8,7 @@ import { BrochureComponent } from './brochure/brochure.component';
 import { MagazineComponent } from './magazine/magazine.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { PublisherComponent } from './publisher/publisher.component';
+import { AuthorComponent } from './author/author.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
@@ -18,7 +19,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'brochure', component: BrochureComponent },
             { path: 'magazine', component: MagazineComponent },
             { path: 'publications', component: PublicationsComponent },
-            { path: 'publisher', component: PublisherComponent }
+            { path: 'publisher', component: PublisherComponent },
+            { path: 'author', component: AuthorComponent }
         ]
     }
 ]);

@@ -2,7 +2,6 @@
 using Library.DAL.Repositories;
 using Library.Entities.Enums;
 using Library.Entities.Models;
-using Library.ViewModels;
 using Library.ViewModels.Magazine;
 using System.Collections.Generic;
 
@@ -26,8 +25,9 @@ namespace Library.BLL.Services
 
         public IEnumerable<GetMagazineViewModel> GetAll()
         {
-            var result = Mapper.Map<IEnumerable<Magazine>, List<GetMagazineViewModel>>(_magazineRepository.GetAll());
-            return result;
+            var magazineEntities = _magazineRepository.GetAll();
+            var magazineViews = Mapper.Map<IEnumerable<Magazine>, List<GetMagazineViewModel>>(magazineEntities);
+            return magazineViews;
         }
 
         public void Remove(int id)

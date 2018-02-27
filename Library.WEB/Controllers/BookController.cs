@@ -2,8 +2,7 @@ using Library.BLL.Services;
 using Library.ViewModels.Book;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.Extensions.Configuration;
 
 namespace Library.WEB.Controllers
 {
@@ -12,12 +11,11 @@ namespace Library.WEB.Controllers
     {
         private readonly BookService _bookService;
 
-        public BookController()
+        public BookController(IConfiguration configuration)
         {
             _bookService = new BookService();
         }
 
-        // GET: api/<controller>
         [Authorize]
         [HttpGet]
         public IActionResult Get()
@@ -26,7 +24,6 @@ namespace Library.WEB.Controllers
             return Ok(books);
         }
 
-        // POST api/<controller>
         [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Post([FromBody]PostBookViewModel book)
@@ -35,7 +32,6 @@ namespace Library.WEB.Controllers
             return Ok();
         }
 
-        // PUT api/<controller>/5
         [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]PutBookViewModel book)
@@ -44,7 +40,6 @@ namespace Library.WEB.Controllers
             return Ok();
         }
         
-        // DELETE api/<controller>/5
         [Authorize(Roles ="admin")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

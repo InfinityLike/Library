@@ -16,19 +16,19 @@ export class PublisherService {
         });;
     }
 
-    public save(data: any, isNew?: boolean): Observable<any> {
+    public save(data: PublisherViewModel, isNew?: boolean) {
         if (isNew) {
             return this.http.post('api/publisher', data)
-                .map(data => data as any);
+                .map(data => data);
         }
         if (!isNew) {
             return this.http.put('api/publisher/' + data.id, data)
-                .map(data => data as any);
+                .map(data => data);
         }
     }
 
-    public remove(id): Observable<any> {
+    public remove(id) {
         return this.http.delete('api/publisher/' + id)
-            .map(data => data as any);
+            .map(data => data);
     }
 }

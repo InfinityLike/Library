@@ -1,6 +1,6 @@
-﻿namespace Library.ViewModels
+﻿namespace Library.Entities.Models
 {
-    public class GetTypeOfPublicationViewModel
+    public class Author
     {
         public int Id { get; set; }
 

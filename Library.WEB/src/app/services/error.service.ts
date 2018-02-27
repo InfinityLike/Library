@@ -8,7 +8,6 @@ export abstract class ErrorService {
     protected handleError(error: any) {
         var applicationError = error.headers.get('Application-Error');
 
-        // either applicationError in header or model error in body
         if (applicationError) {
             return Observable.throw(applicationError);
         }

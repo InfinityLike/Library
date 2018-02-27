@@ -16,19 +16,19 @@ export class BookService {
         });;
     }
 
-    public save(data: any, isNew?: boolean): Observable<any> {
+    public save(data: BookViewModel, isNew?: boolean) {
         if (isNew) {
             return this.http.post('api/book', data)
-                .map(data => data as any);
+                .map(data => data);
         }
         if (!isNew) {
             return this.http.put('api/book/' + data.id, data)
-                .map(data => data as any);
+                .map(data => data);
         }
     }
 
-    public remove(id): Observable<any> {
+    public remove(id) {
         return this.http.delete('api/book/' + id)
-            .map(data => data as any);
+            .map(data => data);
     }
 }

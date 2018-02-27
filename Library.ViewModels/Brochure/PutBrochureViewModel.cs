@@ -1,4 +1,6 @@
-﻿namespace Library.ViewModels.Brochure
+﻿using Library.ViewModels.Publication;
+
+namespace Library.ViewModels.Brochure
 {
     public class PutBrochureViewModel : GetPublicationViewModel
     {

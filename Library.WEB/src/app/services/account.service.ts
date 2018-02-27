@@ -8,6 +8,9 @@ import { BehaviorSubject } from 'rxjs/Rx';
 
 import { ErrorService } from './error.service';
 
+import { LoginViewModel } from '../ViewModels/loginViewModel';
+import { RegisterViewModel } from '../ViewModels/registerViewModel';
+
 @Injectable()
 export class AccountService extends ErrorService {
     public static isLoggedIn: boolean = false;
@@ -17,7 +20,7 @@ export class AccountService extends ErrorService {
         super();
     }
 
-    public login(data: any) {
+    public login(data: LoginViewModel) {
         return this.http.post('api/account/login', data)
             .map(res => {
                 AccountService.isLoggedIn = true;
@@ -30,7 +33,7 @@ export class AccountService extends ErrorService {
             .catch(this.handleError);
     }
 
-    public register(data: any) {
+    public register(data: RegisterViewModel) {
         return this.http.post('api/account/register', data)
             .map(res => true)
             .catch(this.handleError);

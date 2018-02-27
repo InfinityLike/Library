@@ -1,13 +1,10 @@
 using Library.Entities.Enums;
 using Library.Entities.Models;
-using Library.ViewModels;
+using Library.ViewModels.Account;
 using Library.WEB.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Library.WEB.Controllers
 {
@@ -33,7 +30,7 @@ namespace Library.WEB.Controllers
 
         [HttpPost]
         [ActionName("Login")]
-        public async Task<IActionResult> Login([FromBody]PostLoginUserViewModel model)
+        public async Task<IActionResult> Login([FromBody]LoginAccountViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +49,7 @@ namespace Library.WEB.Controllers
 
         [HttpPost]
         [ActionName("Register")]
-        public async Task<IActionResult> Register([FromBody]PostRegisterUserViewModel model)
+        public async Task<IActionResult> Register([FromBody]RegisterAccountViewModel model)
         {
             if (!ModelState.IsValid)
             {

@@ -1,4 +1,4 @@
-﻿namespace Library.ViewModels
+﻿namespace Library.ViewModels.Publication
 {
     public class GetPublicationViewModel
     {

@@ -24,11 +24,11 @@
         <None Remove="src\app\components\account\register\register.component.ts" />
         <None Remove="src\app\components\account\root\root.component.ts" />
         <None Remove="src\app\components\home\home.component.ts" />
+        <None Remove="src\app\components\library\author\author.component.ts" />
         <None Remove="src\app\components\library\book\book.component.ts" />
         <None Remove="src\app\components\library\brochure\brochure.component.ts" />
         <None Remove="src\app\components\account\login\login.component.ts" />
         <None Remove="src\app\components\library\dashboard\dashboard.component.ts" />
-        <None Remove="src\app\components\library\home\home.component.ts" />
         <None Remove="src\app\components\library\library.module.ts" />
         <None Remove="src\app\components\library\library.routing.ts" />
         <None Remove="src\app\components\library\magazine\magazine.component.ts" />
@@ -38,18 +38,20 @@
         <None Remove="src\app\components\library\publications\publications.component.ts" />
         <None Remove="src\app\components\library\publisher\publisher.component.ts" />
         <None Remove="src\app\services\account.service.ts" />
+        <None Remove="src\app\services\author.service.ts" />
         <None Remove="src\app\services\error.service.ts" />
         <None Remove="src\app\services\magazine.service.ts" />
         <None Remove="src\app\services\publications.service.ts" />
         <None Remove="src\app\services\publisher.service.ts" />
-        <None Remove="src\app\ViewModels\bookViewModel.ts" />
-        <None Remove="src\app\ViewModels\brochureViewModel.ts" />
+        <None Remove="src\app\viewModels\authorViewModel.ts" />
+        <None Remove="src\app\viewModels\bookViewModel.ts" />
+        <None Remove="src\app\viewModels\brochureViewModel.ts" />
         <None Remove="src\app\services\brochure.service.ts" />
-        <None Remove="src\app\ViewModels\loginViewModel.ts" />
-        <None Remove="src\app\ViewModels\magazineViewModel.ts" />
-        <None Remove="src\app\ViewModels\publicationsViewModel.ts" />
-        <None Remove="src\app\ViewModels\publisherViewModel.ts" />
-        <None Remove="src\app\ViewModels\registerViewModel.ts" />
+        <None Remove="src\app\viewModels\loginViewModel.ts" />
+        <None Remove="src\app\viewModels\magazineViewModel.ts" />
+        <None Remove="src\app\viewModels\publicationsViewModel.ts" />
+        <None Remove="src\app\viewModels\publisherViewModel.ts" />
+        <None Remove="src\app\viewModels\registerViewModel.ts" />
     </ItemGroup>
 
     <ItemGroup>
@@ -72,10 +74,10 @@
         <TypeScriptCompile Include="src\app\components\account\account.routing.ts" />
         <TypeScriptCompile Include="src\app\components\account\root\root.component.ts" />
         <TypeScriptCompile Include="src\app\components\home\home.component.ts" />
+        <TypeScriptCompile Include="src\app\components\library\author\author.component.ts" />
         <TypeScriptCompile Include="src\app\components\library\book\book.component.ts" />
         <TypeScriptCompile Include="src\app\components\library\brochure\brochure.component.ts" />
         <TypeScriptCompile Include="src\app\components\library\dashboard\dashboard.component.ts" />
-        <TypeScriptCompile Include="src\app\components\library\home\home.component.ts" />
         <TypeScriptCompile Include="src\app\components\library\navbar\navbar.component.ts" />
         <TypeScriptCompile Include="src\app\components\library\root\root.component.ts" />
         <TypeScriptCompile Include="src\app\components\account\login\login.component.ts" />
@@ -88,19 +90,21 @@
         <TypeScriptCompile Include="src\app\components\account\register\register.component.html" />
         <TypeScriptCompile Include="src\app\components\account\register\register.component.ts" />
         <TypeScriptCompile Include="src\app\services\account.service.ts" />
+        <TypeScriptCompile Include="src\app\services\author.service.ts" />
         <TypeScriptCompile Include="src\app\services\error.service.ts" />
         <TypeScriptCompile Include="src\app\services\magazine.service.ts" />
         <TypeScriptCompile Include="src\app\services\publications.service.ts" />
         <TypeScriptCompile Include="src\app\services\publisher.service.ts" />
-        <TypeScriptCompile Include="src\app\ViewModels\bookViewModel.ts" />
-        <TypeScriptCompile Include="src\app\ViewModels\brochureViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\authorViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\bookViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\brochureViewModel.ts" />
         <TypeScriptCompile Include="src\app\services\book.service.ts" />
-        <TypeScriptCompile Include="src\app\ViewModels\loginViewModel.ts" />
-        <TypeScriptCompile Include="src\app\ViewModels\magazineViewModel.ts" />
-        <TypeScriptCompile Include="src\app\ViewModels\publicationsViewModel.ts" />
-        <TypeScriptCompile Include="src\app\ViewModels\publisherViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\loginViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\magazineViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\publicationsViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\publisherViewModel.ts" />
         <TypeScriptCompile Include="src\app\services\brochure.service.ts" />
-        <TypeScriptCompile Include="src\app\ViewModels\registerViewModel.ts" />
+        <TypeScriptCompile Include="src\app\viewModels\registerViewModel.ts" />
     </ItemGroup>
 
     <ItemGroup>

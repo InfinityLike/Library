@@ -37,10 +37,6 @@ export class MagazineComponent implements OnInit {
 
     public onStateChange(state: State) {
         this.gridState = state;
-
-        //this.service.query(state);
-
-        //this.editService.read();
     }
 
     public addHandler({ sender }) {
@@ -50,7 +46,7 @@ export class MagazineComponent implements OnInit {
             'id': new FormControl({ value: 0, disabled: true }, Validators.required),
             'name': new FormControl('', Validators.required),
             'number': new FormControl(0, Validators.required),
-            'yearOfPublishing': new FormControl(0, Validators.required),
+            'dateOfPublishing': new FormControl(new Date(2000, 10, 10, 10), Validators.required),
         });
 
         sender.addRow(this.formGroup);
@@ -63,11 +59,10 @@ export class MagazineComponent implements OnInit {
             'id': new FormControl({ value: dataItem.id, disabled: true }, Validators.required),
             'name': new FormControl(dataItem.name, Validators.required),
             'number': new FormControl(dataItem.number, Validators.required),
-            'yearOfPublishing': new FormControl(dataItem.yearOfPublishing, Validators.required),
+            'dateOfPublishing': new FormControl(new Date(dataItem.dateOfPublishing), Validators.required),
         });
 
         this.editedRowIndex = rowIndex;
-
         sender.editRow(rowIndex, this.formGroup);
     }
 
@@ -77,6 +72,11 @@ export class MagazineComponent implements OnInit {
 
     public saveHandler({ sender, rowIndex, formGroup, isNew }) {
         const magazine: MagazineViewModel = formGroup.getRawValue();
+
+        var oldDate = new Date(magazine.dateOfPublishing);
+        var date = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 12, 0, 0);
+        magazine.dateOfPublishing = date;
+
         this.magazineService.save(magazine, isNew).subscribe(data => {
             this.loadMagazineData();
         });

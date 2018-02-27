@@ -14,7 +14,6 @@ namespace Library.WEB
     {
         public static async Task Main(string[] args)
         {
-            //BuildWebHost(args).Run();
             var host = BuildWebHost(args);
 
             using (var scope = host.Services.CreateScope())
@@ -24,7 +23,7 @@ namespace Library.WEB
                 {
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    await IdentityInit.InitializeAsync(userManager, rolesManager);
+                    await scope.ServiceProvider.GetService<LibraryDb>().InitializeAsync(userManager, rolesManager);
                 }
                 catch (Exception ex)
                 {

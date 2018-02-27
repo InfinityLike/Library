@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { GridModule } from '@progress/kendo-angular-grid'
 import { DropDownListModule } from '@progress/kendo-angular-dropdowns';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 
 import { routing } from './library.routing';
 
@@ -20,6 +21,7 @@ import { BrochureComponent } from './brochure/brochure.component';
 import { MagazineComponent } from './magazine/magazine.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { PublisherComponent } from './publisher/publisher.component';
+import { AuthorComponent } from './author/author.component';
 
 //SERVICES
 import { BookService } from '../../services/book.service';
@@ -28,6 +30,7 @@ import { MagazineService } from '../../services/magazine.service';
 import { PublicationsService } from '../../services/publications.service';
 import { PublisherService } from '../../services/publisher.service';
 import { AccountService } from '../../services/account.service';
+import { AuthorService } from '../../services/author.service';
 
 import { AuthGuard } from '../../auth.guard';
 
@@ -43,6 +46,7 @@ import { AuthGuard } from '../../auth.guard';
         GridModule,
         DropDownsModule,
         DropDownListModule,
+        DateInputsModule
     ],
     declarations: [
         RootComponent,
@@ -52,7 +56,8 @@ import { AuthGuard } from '../../auth.guard';
         BrochureComponent,
         MagazineComponent,
         PublicationsComponent,
-        PublisherComponent
+        PublisherComponent,
+        AuthorComponent
     ],
     exports: [],
     providers: [
@@ -63,6 +68,7 @@ import { AuthGuard } from '../../auth.guard';
         PublicationsService,
         PublisherService,
         AccountService,
+        AuthorService
     ]
 })
 export class LibraryModule { }

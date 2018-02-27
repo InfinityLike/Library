@@ -8,11 +8,11 @@ namespace Library.BLL.Services
 {
     public class PublisherService
     {
-        private readonly GenericRepository<Publisher> _publisherRepository;
+        private readonly PublisherRepository _publisherRepository;
 
         public PublisherService()
         {
-            _publisherRepository = new GenericRepository<Publisher>();
+            _publisherRepository = new PublisherRepository();
         }
 
         public void Add(PostPublisherViewModel publisherView)
@@ -23,8 +23,9 @@ namespace Library.BLL.Services
 
         public IEnumerable<GetPublisherViewModel> GetAll()
         {
-            var result = Mapper.Map<IEnumerable<Publisher>, List<GetPublisherViewModel>>(_publisherRepository.GetAll());
-            return result;
+            var publisherEntities = _publisherRepository.GetAll();
+            var publisherViews = Mapper.Map<IEnumerable<Publisher>, List<GetPublisherViewModel>>(publisherEntities);
+            return publisherViews;
         }
 
         public void Remove(int id)

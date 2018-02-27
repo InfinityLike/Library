@@ -17,9 +17,43 @@
     </kendo-grid-column>
     <kendo-grid-column field="name" title="Name">
     </kendo-grid-column>
-    <kendo-grid-column field="author" title="Author">
+    <kendo-grid-column field="authors" title="Author">
+        <ng-template kendoGridCellTemplate
+                     let-dataItem="dataItem"
+                     let-column="column"
+                     let-formGroup="formGroup">
+            <span *ngFor="let author of dataItem.authors;let isLast=last">
+                {{author.name}}{{isLast ? '' : ', '}}
+            </span>
+        </ng-template>
+        <ng-template kendoGridEditTemplate
+                     let-dataItem="dataItem"
+                     let-column="column"
+                     let-formGroup="formGroup">
+            <kendo-multiselect [data]="authorsData"
+                               [textField]="'name'"
+                               [valueField]="'name'"
+                               [formControl]="formGroup.get('authors')">
+            </kendo-multiselect>
+        </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="yearOfPublishing" title="Year of publishing" format="{0:0}" editor="numeric">
+    <kendo-grid-column field="dateOfPublishing" title="Date of publishing">
+        <ng-template kendoGridCellTemplate
+                     let-dataItem="dataItem"
+                     let-column="column"
+                     let-formGroup="formGroup">
+            <span>
+                {{dataItem.dateOfPublishing | date: 'yyyy-MM-dd'}}
+            </span>
+        </ng-template>
+        <ng-template kendoGridEditTemplate
+                     let-dataItem="dataItem"
+                     let-column="column"
+                     let-formGroup="formGroup">
+            <kendo-datepicker [format]="'yyyy-MM-dd'"
+                              [formControl]="formGroup.get('dateOfPublishing')">
+            </kendo-datepicker>
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="publishers" title="Publishers" width="200">
         <ng-template kendoGridCellTemplate

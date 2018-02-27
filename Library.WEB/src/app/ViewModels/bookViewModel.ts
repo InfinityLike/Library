@@ -1,10 +1,11 @@
 import { PublisherViewModel } from './publisherViewModel';
+import { AuthorViewModel } from './authorViewModel';
 
 export class BookViewModel {
     id: number
     name: string
-    author: string
-    yearOfPublishing: number
+    authors: Array<AuthorViewModel>
+    dateOfPublishing: Date
     type: string
     publishers: Array<PublisherViewModel>
 }

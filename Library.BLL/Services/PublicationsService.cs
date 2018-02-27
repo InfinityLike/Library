@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Library.DAL.Repositories;
 using Library.Entities.Models;
-using Library.ViewModels;
 using Library.ViewModels.Book;
 using Library.ViewModels.Brochure;
 using Library.ViewModels.Magazine;
+using Library.ViewModels.Publication;
 using System.Collections.Generic;
 
 namespace Library.BLL.Services
@@ -26,13 +26,17 @@ namespace Library.BLL.Services
         {
             var result = new List<GetPublicationViewModel>();
 
-            var books = Mapper.Map<IEnumerable<Book>, List<GetBookViewModel>>(_bookRepository.GetAll());
-            var magazines = Mapper.Map<IEnumerable<Magazine>, List<GetMagazineViewModel>>(_magazineRepository.GetAll());
-            var brochures = Mapper.Map<IEnumerable<Brochure>, List<GetBrochureViewModel>>(_brochureRepository.GetAll());
+            var bookEntities = _bookRepository.GetAll();
+            var magazineEntities = _magazineRepository.GetAll();
+            var brochureEntities = _brochureRepository.GetAll();
 
-            //result.AddRange(books);
-            result.AddRange(magazines);
-            result.AddRange(brochures);
+            var bookViews = Mapper.Map<IEnumerable<Book>, List<GetBookViewModel>>(bookEntities);
+            var magazineViews = Mapper.Map<IEnumerable<Magazine>, List<GetMagazineViewModel>>(magazineEntities);
+            var brochureViews = Mapper.Map<IEnumerable<Brochure>, List<GetBrochureViewModel>>(brochureEntities);
+
+            result.AddRange(bookViews);
+            result.AddRange(magazineViews);
+            result.AddRange(brochureViews);
 
             return result;
         }

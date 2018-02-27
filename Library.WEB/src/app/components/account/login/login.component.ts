@@ -28,8 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.accountService.logout();
         AccountService.isAdmin = null;
         AccountService.isLoggedIn = false;
-
-        // subscribe to router event
+        
         this.subscription = this.activatedRoute.queryParams.subscribe(
             (param: any) => {
                 this.brandNew = param['brandNew'];
@@ -38,7 +37,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        // prevent memory leak by unsubscribing
         this.subscription.unsubscribe();
     }
 

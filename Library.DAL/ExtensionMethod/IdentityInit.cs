@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Library.DAL
 {
-    public class IdentityInit
+    public static class IdentityInit
     {
-        public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public async static Task InitializeAsync(this LibraryDb libraryDb, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             string adminName = "admin";
             string adminEmail = "admin@gmail.com";

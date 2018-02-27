@@ -18,7 +18,7 @@ namespace Library.DAL.Repositories
 
         public void RemoveByBook(int id)
         {
-            var item = _dbSet.Where(x=>x.BookId == id);
+            var item = _dbSet.Where(x => x.BookId == id);
             if (item != null)
             {
                 _dbSet.RemoveRange(item);

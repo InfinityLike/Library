@@ -3,13 +3,16 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { State, process } from '@progress/kendo-data-query';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { BookViewModel } from '../../../ViewModels/bookViewModel';
 import { PublisherViewModel } from '../../../ViewModels/publisherViewModel';
+import { AuthorViewModel } from '../../../ViewModels/authorViewModel';
 
 import { BookService } from '../../../services/book.service';
 import { PublisherService } from '../../../services/publisher.service';
 import { AccountService } from '../../../services/account.service';
+import { AuthorService } from '../../../services/author.service';
 
 @Component({
     selector: 'book',
@@ -18,6 +21,7 @@ import { AccountService } from '../../../services/account.service';
 export class BookComponent implements OnInit {
     public books: Array<BookViewModel>;
     public publishersData: Array<PublisherViewModel>;
+    public authorsData: Array<AuthorViewModel>
     public gridState: State = {
         sort: [],
         skip: 0,
@@ -29,11 +33,14 @@ export class BookComponent implements OnInit {
     public isAdmin = AccountService.isAdmin;
     public isLoggedIn = AccountService.isLoggedIn;
 
-    constructor(private bookService: BookService, private publisherService: PublisherService) { }
+    constructor(private bookService: BookService,
+        private publisherService: PublisherService,
+        private authorService: AuthorService) { }
 
     ngOnInit() {
         this.loadBookData();
         this.loadPublisherData();
+        this.loadAuthorData();
     }
 
     public onStateChange(state: State) {
@@ -46,8 +53,8 @@ export class BookComponent implements OnInit {
         this.formGroup = new FormGroup({
             'id': new FormControl({ value: 0, disabled: true }, Validators.required),
             'name': new FormControl('', Validators.required),
-            'author': new FormControl('', Validators.required),
-            'yearOfPublishing': new FormControl(0, Validators.required),
+            'authors': new FormControl('', Validators.required),
+            'dateOfPublishing': new FormControl(new Date(2000, 10, 10, 10), Validators.required),
             'publishers': new FormControl('', Validators.required),
         });
 
@@ -56,12 +63,11 @@ export class BookComponent implements OnInit {
 
     public editHandler({ sender, rowIndex, dataItem }) {
         this.closeEditor(sender);
-
         this.formGroup = new FormGroup({
             'id': new FormControl({ value: dataItem.id, disabled: true }, Validators.required),
             'name': new FormControl(dataItem.name, Validators.required),
-            'author': new FormControl(dataItem.author, Validators.required),
-            'yearOfPublishing': new FormControl(dataItem.yearOfPublishing, Validators.required),
+            'authors': new FormControl(dataItem.authors, Validators.required),
+            'dateOfPublishing': new FormControl(new Date(dataItem.dateOfPublishing), Validators.required),
             'publishers': new FormControl(dataItem.publishers, Validators.required),
         });
 
@@ -75,6 +81,11 @@ export class BookComponent implements OnInit {
 
     public saveHandler({ sender, rowIndex, formGroup, isNew }) {
         const book: BookViewModel = formGroup.getRawValue();
+
+        var oldDate = new Date(book.dateOfPublishing);
+        var date = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 12, 0, 0);
+        book.dateOfPublishing = date;
+
         this.bookService.save(book, isNew).subscribe(data => {
             this.loadBookData();
         });
@@ -105,6 +116,14 @@ export class BookComponent implements OnInit {
         this.publisherService.getPublishers().subscribe(
             (data: Array<PublisherViewModel>) => {
                 this.publishersData = data;
+            }
+        );
+    }
+
+    private loadAuthorData() {
+        this.authorService.getAuthors().subscribe(
+            (data: Array<AuthorViewModel>) => {
+                this.authorsData = data;
             }
         );
     }

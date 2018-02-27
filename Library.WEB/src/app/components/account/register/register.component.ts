@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 import { RegisterViewModel } from '../../../ViewModels/registerViewModel';
 
 import { AccountService } from '../../../services/account.service';

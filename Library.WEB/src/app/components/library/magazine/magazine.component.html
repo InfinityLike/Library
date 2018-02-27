@@ -16,7 +16,24 @@
     <kendo-grid-column field="id" title="Id"></kendo-grid-column>
     <kendo-grid-column field="name" title="Name"></kendo-grid-column>
     <kendo-grid-column field="number" editor="numeric" title="Number"></kendo-grid-column>
-    <kendo-grid-column field="yearOfPublishing" editor="numeric" title="Year of publishing" width="150"></kendo-grid-column>
+    <kendo-grid-column field="dateOfPublishing" title="Year of publishing">
+        <ng-template kendoGridCellTemplate
+                     let-dataItem="dataItem"
+                     let-column="column"
+                     let-formGroup="formGroup">
+            <span>
+                {{dataItem.dateOfPublishing | date: 'yyyy-MM-dd'}}
+            </span>
+        </ng-template>
+        <ng-template kendoGridEditTemplate
+                     let-dataItem="dataItem"
+                     let-column="column"
+                     let-formGroup="formGroup">
+            <kendo-datepicker [format]="'yyyy-MM-dd'"
+                              [formControl]="formGroup.get('dateOfPublishing')">
+            </kendo-datepicker>
+        </ng-template>
+    </kendo-grid-column>
     <kendo-grid-command-column *ngIf="isAdmin" title="Commands" width="220">
         <ng-template kendoGridCellTemplate let-isNew="isNew">
             <button kendoGridEditCommand class="k-primary">Edit</button>
