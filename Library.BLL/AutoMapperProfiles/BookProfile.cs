@@ -8,7 +8,7 @@ namespace Library.BLL.AutoMapperProfiles
     {
         public BookProfile()
         {
-            CreateMap<Book, GetBookViewModel>()
+            CreateMap<Book, BookViewModel>()
                 .ForMember(x => x.Publishers, opt => opt.Ignore())
                 .ForMember(x => x.Authors, opt => opt.Ignore());
             CreateMap<Book, PostBookViewModel>()

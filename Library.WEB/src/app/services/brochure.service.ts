@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from "@angular/common/http";
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
@@ -7,33 +7,33 @@ import { BrochureViewModel } from '../ViewModels/brochureViewModel';
 
 @Injectable()
 export class BrochureService {
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     public getBrochures(): Observable<BrochureViewModel[]> {
         return this.http.get('api/brochure').map((response) => {
-            return <BrochureViewModel[]>response.json();
+            return <BrochureViewModel[]>response;
         });;
     }
 
-    public getTypeOfCover(): Observable<string[]> {
-        return this.http.get('api/typeOfCover').map((response) => {
-            return <string[]>response.json();
+    public getCoverType(): Observable<string[]> {
+        return this.http.get('api/coverType').map((response) => {
+            return <string[]>response;
         });;
     }
 
-    public save(data: BrochureViewModel, isNew?: boolean) {
+    public save(data: BrochureViewModel, isNew?: boolean): Observable<boolean> {
         if (isNew) {
             return this.http.post('api/brochure', data)
-                .map(data => data);
+                .map(x => x as boolean);
         }
         if (!isNew) {
             return this.http.put('api/brochure/' + data.id, data)
-                .map(data => data);
+                .map(x => x as boolean);
         }
     }
 
-    public remove(id) {
+    public remove(id): Observable<boolean> {
         return this.http.delete('api/brochure/' + id)
-            .map(data => data);
+            .map(x => x as boolean);
     }
 }

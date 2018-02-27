@@ -19,14 +19,15 @@ namespace Library.BLL.Services
         public void Add(PostBrochureViewModel brochureView)
         {
             Brochure brochure = Mapper.Map<PostBrochureViewModel, Brochure>(brochureView);
-            brochure.TypeOfPublication = TypeOfPublication.Brochure;
+            brochure.PublicationType = PublicationType.Brochure;
             _brochureRepository.Add(brochure);
         }
 
-        public IEnumerable<GetBrochureViewModel> GetAll()
+        public GetBrochureViewModel GetAll()
         {
             var brochureEntities = _brochureRepository.GetAll();
-            var brochureViews = Mapper.Map<IEnumerable<Brochure>, List<GetBrochureViewModel>>(brochureEntities);
+            var brochureViews = new GetBrochureViewModel();
+            brochureViews.Brochures = Mapper.Map<IEnumerable<Brochure>, List<BrochureViewModel>>(brochureEntities);
             return brochureViews;
         }
 
@@ -38,6 +39,7 @@ namespace Library.BLL.Services
         public void Update(PutBrochureViewModel brochureView)
         {
             Brochure brochure = Mapper.Map<PutBrochureViewModel, Brochure>(brochureView);
+            brochure.PublicationType = PublicationType.Brochure;
             _brochureRepository.Update(brochure);
         }
     }

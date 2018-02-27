@@ -1,11 +1,14 @@
-﻿namespace Library.ViewModels.Publisher
+﻿using System.Collections.Generic;
+
+namespace Library.ViewModels.Publisher
 {
     public class GetPublisherViewModel
     {
-        public int Id { get; set; }
+        public List<PublisherViewModel> Publishers { get; set; }
 
-        public string Name { get; set; }
-
-        public string Address { get; set; }
+        public GetPublisherViewModel()
+        {
+            Publishers = new List<PublisherViewModel>();
+        }
     }
 }

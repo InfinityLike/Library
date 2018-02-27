@@ -30,39 +30,42 @@ namespace Library.BLL.Services
         public void Add(PostBookViewModel bookView)
         {
             Book book = Mapper.Map<PostBookViewModel, Book>(bookView);
-            book.TypeOfPublication = TypeOfPublication.Book;
+            book.PublicationType = PublicationType.Book;
             _bookRepository.Add(book);
 
             AddRelationshipsBookPublisher(book, bookView.Publishers);
             AddRelationshipsBookAuthor(book, bookView.Authors);
         }
 
-        public IEnumerable<GetBookViewModel> GetAll()
+        public GetBookViewModel GetAll()
         {
-            var result = new List<GetBookViewModel>();
+            var bookViews = new List<BookViewModel>();
             var bookPublishers = _bookPublisherRepository.GetAll().GroupBy(x => x.Book);
             var bookAuthors = _bookAuthorRepository.GetAll().GroupBy(x => x.Book);
 
             foreach (var bookPublisher in bookPublishers)
             {
-                GetBookViewModel bookViewModel = Mapper.Map<GetBookViewModel>(bookPublisher.Key);
+                BookViewModel bookViewModel = Mapper.Map<BookViewModel>(bookPublisher.Key);
 
                 var publishers = bookPublisher.Select(a => a.Publisher);
-                var publishersViewModel = Mapper.Map<List<GetPublisherViewModel>>(publishers);
+                var publishersViewModel = Mapper.Map<List<PublisherViewModel>>(publishers);
                
                 bookViewModel.Publishers.AddRange(publishersViewModel);
-                result.Add(bookViewModel);
+                bookViews.Add(bookViewModel);
             }
 
             foreach (var bookAuthor in bookAuthors)
             {
-                var bookViewModel = result.Where(x => x.Id == bookAuthor.Key.Id).SingleOrDefault();
+                var bookViewModel = bookViews.Where(x => x.Id == bookAuthor.Key.Id).SingleOrDefault();
 
                 var authors = bookAuthor.Select(a => a.Author);
-                var authorsViewModel = Mapper.Map<List<GetAuthorViewModel>>(authors);
+                var authorsViewModel = Mapper.Map<List<AuthorViewModel>>(authors);
 
                 bookViewModel.Authors.AddRange(authorsViewModel);
             }
+
+            var result = new GetBookViewModel();
+            result.Books = bookViews;
 
             return result;
         }
@@ -75,6 +78,7 @@ namespace Library.BLL.Services
         public void Update(PutBookViewModel bookView)
         {
             Book book = Mapper.Map<PutBookViewModel, Book>(bookView);
+            book.PublicationType = PublicationType.Book;
             _bookRepository.Update(book);
 
             _bookPublisherRepository.RemoveByBook(book.Id);
@@ -84,7 +88,7 @@ namespace Library.BLL.Services
             AddRelationshipsBookAuthor(book, bookView.Authors);
         }
 
-        private void AddRelationshipsBookPublisher(Book book, List<GetPublisherViewModel> publishers)
+        private void AddRelationshipsBookPublisher(Book book, List<PublisherViewModel> publishers)
         {
             List<BookPublisher> bookPublishers = new List<BookPublisher>();
 
@@ -99,7 +103,7 @@ namespace Library.BLL.Services
             _bookPublisherRepository.Add(bookPublishers);
         }
 
-        private void AddRelationshipsBookAuthor(Book book, List<GetAuthorViewModel> authors)
+        private void AddRelationshipsBookAuthor(Book book, List<AuthorViewModel> authors)
         {
             List<BookAuthor> bookAuthors = new List<BookAuthor>();
 

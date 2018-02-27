@@ -19,14 +19,15 @@ namespace Library.BLL.Services
         public void Add(PostMagazineViewModel magazineView)
         {
             Magazine magazine = Mapper.Map<PostMagazineViewModel, Magazine>(magazineView);
-            magazine.TypeOfPublication = TypeOfPublication.Magazine;
+            magazine.PublicationType = PublicationType.Magazine;
             _magazineRepository.Add(magazine);
         }
 
-        public IEnumerable<GetMagazineViewModel> GetAll()
+        public GetMagazineViewModel GetAll()
         {
             var magazineEntities = _magazineRepository.GetAll();
-            var magazineViews = Mapper.Map<IEnumerable<Magazine>, List<GetMagazineViewModel>>(magazineEntities);
+            var magazineViews = new GetMagazineViewModel();
+            magazineViews.Magazines = Mapper.Map<IEnumerable<Magazine>, List<MagazineViewModel>>(magazineEntities);
             return magazineViews;
         }
 
@@ -38,6 +39,7 @@ namespace Library.BLL.Services
         public void Update(PutMagazineViewModel magazineView)
         {
             Magazine magazine = Mapper.Map<PutMagazineViewModel, Magazine>(magazineView);
+            magazine.PublicationType = PublicationType.Magazine;
             _magazineRepository.Update(magazine);
         }
     }

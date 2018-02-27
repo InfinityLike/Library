@@ -20,7 +20,7 @@ namespace Library.WEB.Controllers
         public IActionResult Get()
         {
             var publishers = _publisherService.GetAll();
-            return Ok(publishers);
+            return Ok(publishers.Publishers);
         }
         
         [Authorize(Roles = "admin")]

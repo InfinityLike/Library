@@ -6,18 +6,18 @@ using System.Collections.Generic;
 
 namespace Library.ViewModels.Book
 {
-    public class PostBookViewModel : GetPublicationViewModel
+    public class PostBookViewModel : PublicationViewModel
     {
-        public List<GetAuthorViewModel> Authors { get; set; }
+        public List<AuthorViewModel> Authors { get; set; }
 
         public DateTime DateOfPublishing { get; set; }
 
-        public List<GetPublisherViewModel> Publishers { get; set; }
+        public List<PublisherViewModel> Publishers { get; set; }
 
         public PostBookViewModel()
         {
-            Authors = new List<GetAuthorViewModel>();
-            Publishers = new List<GetPublisherViewModel>();
+            Authors = new List<AuthorViewModel>();
+            Publishers = new List<PublisherViewModel>();
         }
     }
 }

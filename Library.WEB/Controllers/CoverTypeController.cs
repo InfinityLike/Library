@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace Library.WEB.Controllers
 {
     [Route("api/[controller]")]
-    public class TypeOfCoverController : Controller
+    public class CoverTypeController : Controller
     {
         [Authorize]
         [HttpGet]
         public IActionResult Get()
         {
-            var typeList = Enum.GetNames(typeof(TypeOfCover));
+            var typeList = Enum.GetNames(typeof(BrochureCoverType));
             return Ok(typeList);
         }
     }

@@ -4,7 +4,7 @@ namespace Library.Entities.Models
 {
     public class Brochure : Publication
     {
-        public TypeOfCover TypeOfCover { get; set; }
+        public BrochureCoverType CoverType { get; set; }
 
         public int NumberOfPages { get; set; }
     }

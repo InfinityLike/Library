@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,28 +8,28 @@ import { MagazineViewModel } from '../ViewModels/magazineViewModel';
 
 @Injectable()
 export class MagazineService {
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
     }
 
     public getMagazines(): Observable<MagazineViewModel[]> {
         return this.http.get('api/magazine').map((response) => {
-            return <MagazineViewModel[]>response.json();
+            return <MagazineViewModel[]>response;
         });;
     }
 
-    public save(data: MagazineViewModel, isNew?: boolean) {
+    public save(data: MagazineViewModel, isNew?: boolean): Observable<boolean> {
         if (isNew) {
             return this.http.post('api/magazine', data)
-                .map(data => data);
+                .map(x => x as boolean);
         }
         if (!isNew) {
             return this.http.put('api/magazine/' + data.id, data)
-                .map(data => data);
+                .map(x => x as boolean);
         }
     }
 
-    public remove(id) {
+    public remove(id): Observable<boolean> {
         return this.http.delete('api/magazine/' + id)
-            .map(data => data);
+            .map(x => x as boolean);
     }
 }

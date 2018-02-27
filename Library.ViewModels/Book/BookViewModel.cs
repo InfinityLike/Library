@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Library.ViewModels.Book
 {
-    public class PutBookViewModel : PublicationViewModel
+    public class BookViewModel : PublicationViewModel
     {
         public List<AuthorViewModel> Authors { get; set; }
 
@@ -14,7 +14,7 @@ namespace Library.ViewModels.Book
 
         public List<PublisherViewModel> Publishers { get; set; }
 
-        public PutBookViewModel()
+        public BookViewModel()
         {
             Authors = new List<AuthorViewModel>();
             Publishers = new List<PublisherViewModel>();

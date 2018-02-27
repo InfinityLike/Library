@@ -3,7 +3,7 @@ using System;
 
 namespace Library.ViewModels.Magazine
 {
-    public class PutMagazineViewModel : PublicationViewModel
+    public class MagazineViewModel: PublicationViewModel
     {
         public int Number { get; set; }
 

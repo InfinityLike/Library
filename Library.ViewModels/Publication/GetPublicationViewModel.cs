@@ -1,11 +1,14 @@
-﻿namespace Library.ViewModels.Publication
+﻿using System.Collections.Generic;
+
+namespace Library.ViewModels.Publication
 {
     public class GetPublicationViewModel
     {
-        public int Id { get; set; }
+        public List<PublicationViewModel> Publications { get; set; }
 
-        public string Name { get; set; }
-
-        public string TypeOfPublication { get; set; }
+        public GetPublicationViewModel()
+        {
+            Publications = new List<PublicationViewModel>();
+        }
     }
 }

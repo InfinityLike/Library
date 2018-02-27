@@ -1,23 +1,14 @@
-﻿using Library.ViewModels.Author;
-using Library.ViewModels.Publication;
-using Library.ViewModels.Publisher;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Library.ViewModels.Book
 {
-    public class GetBookViewModel : GetPublicationViewModel
+    public class GetBookViewModel
     {
-        public List<GetAuthorViewModel> Authors { get; set; }
-
-        public DateTime DateOfPublishing { get; set; }
-
-        public List<GetPublisherViewModel> Publishers { get; set; }
+        public List<BookViewModel> Books { get; set; }
 
         public GetBookViewModel()
         {
-            Authors = new List<GetAuthorViewModel>();
-            Publishers = new List<GetPublisherViewModel>();
+            Books = new List<BookViewModel>();
         }
     }
 }

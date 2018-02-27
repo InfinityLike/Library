@@ -12,9 +12,10 @@ using System;
 namespace Library.DAL.Migrations
 {
     [DbContext(typeof(LibraryDb))]
-    partial class LibraryDbModelSnapshot : ModelSnapshot
+    [Migration("20180227102512_9")]
+    partial class _9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

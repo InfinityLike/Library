@@ -8,6 +8,6 @@ namespace Library.Entities.Models
 
         public string Name { get; set; }
 
-        public TypeOfPublication TypeOfPublication { get; set; }
+        public PublicationType PublicationType { get; set; }
     }
 }

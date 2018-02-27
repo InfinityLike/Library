@@ -1,11 +1,14 @@
-﻿using Library.ViewModels.Publication;
+﻿using System.Collections.Generic;
 
 namespace Library.ViewModels.Brochure
 {
-    public class GetBrochureViewModel : GetPublicationViewModel
+    public class GetBrochureViewModel
     {
-        public string TypeOfCover { get; set; }
+        public List<BrochureViewModel> Brochures { get; set; }
 
-        public int NumberOfPages { get; set; }
+        public GetBrochureViewModel()
+        {
+            Brochures = new List<BrochureViewModel>();
+        }
     }
 }

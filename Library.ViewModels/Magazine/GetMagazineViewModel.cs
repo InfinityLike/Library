@@ -1,12 +1,14 @@
-﻿using Library.ViewModels.Publication;
-using System;
+﻿using System.Collections.Generic;
 
 namespace Library.ViewModels.Magazine
 {
-    public class GetMagazineViewModel : GetPublicationViewModel
+    public class GetMagazineViewModel
     {
-        public int Number { get; set; }
+        public List<MagazineViewModel> Magazines { get; set; }
 
-        public DateTime DateOfPublishing { get; set; }
+        public GetMagazineViewModel()
+        {
+            Magazines = new List<MagazineViewModel>();
+        }
     }
 }

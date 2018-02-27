@@ -8,7 +8,7 @@ namespace Library.BLL.AutoMapperProfiles
     {
         public BrochureProfile()
         {
-            CreateMap<Brochure, GetBrochureViewModel>()
+            CreateMap<Brochure, BrochureViewModel>()
                 .ReverseMap();
             CreateMap<Brochure, PostBrochureViewModel>()
                 .ReverseMap();

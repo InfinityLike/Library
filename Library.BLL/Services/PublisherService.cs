@@ -21,10 +21,11 @@ namespace Library.BLL.Services
             _publisherRepository.Add(publisher);
         }
 
-        public IEnumerable<GetPublisherViewModel> GetAll()
+        public GetPublisherViewModel GetAll()
         {
             var publisherEntities = _publisherRepository.GetAll();
-            var publisherViews = Mapper.Map<IEnumerable<Publisher>, List<GetPublisherViewModel>>(publisherEntities);
+            var publisherViews = new GetPublisherViewModel();
+            publisherViews.Publishers = Mapper.Map<IEnumerable<Publisher>, List<PublisherViewModel>>(publisherEntities);
             return publisherViews;
         }
 

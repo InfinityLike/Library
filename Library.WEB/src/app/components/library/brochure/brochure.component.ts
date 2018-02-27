@@ -15,7 +15,7 @@ import { AccountService } from '../../../services/account.service';
 })
 export class BrochureComponent implements OnInit {
     public brochures: Array<BrochureViewModel>;
-    public typesOfCover: Array<string>;
+    public coverType: Array<string>;
     public gridState: State = {
         sort: [],
         skip: 0,
@@ -31,7 +31,7 @@ export class BrochureComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadBrochureData();
-        this.loadTypeOfCoverData();
+        this.loadCoverTypeData();
     }
 
     public onStateChange(state: State) {
@@ -45,7 +45,7 @@ export class BrochureComponent implements OnInit {
             'id': new FormControl({ value: 0, disabled: true }, Validators.required),
             'name': new FormControl('', Validators.required),
             'numberOfPages': new FormControl(0, Validators.required),
-            'typeOfCover': new FormControl('', Validators.required),
+            'coverType': new FormControl('', Validators.required),
         });
 
         sender.addRow(this.formGroup);
@@ -58,7 +58,7 @@ export class BrochureComponent implements OnInit {
             'id': new FormControl({ value: dataItem.id, disabled: true }, Validators.required),
             'name': new FormControl(dataItem.name, Validators.required),
             'numberOfPages': new FormControl(dataItem.numberOfPages, Validators.required),
-            'typeOfCover': new FormControl(dataItem.typeOfCover, Validators.required),
+            'coverType': new FormControl(dataItem.coverType, Validators.required),
         });
 
         this.editedRowIndex = rowIndex;
@@ -97,10 +97,10 @@ export class BrochureComponent implements OnInit {
         );
     }
 
-    private loadTypeOfCoverData() {
-        this.brochureService.getTypeOfCover().subscribe(
+    private loadCoverTypeData() {
+        this.brochureService.getCoverType().subscribe(
             (data: Array<string>) => {
-                this.typesOfCover = data;
+                this.coverType = data;
             }
         );
     }

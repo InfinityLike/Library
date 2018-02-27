@@ -1,6 +1,6 @@
 ﻿namespace Library.Entities.Enums
 {
-    public enum TypeOfCover
+    public enum BrochureCoverType
     {
         Soft = 1,
         Hard = 2

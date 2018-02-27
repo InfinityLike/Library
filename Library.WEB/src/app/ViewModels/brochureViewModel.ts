@@ -1,7 +1,7 @@
 export class BrochureViewModel {
     id: number
     name: string
-    typeOfCover: string
+    coverType: string
     numberOfPages: number
     type: string
 }

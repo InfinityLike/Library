@@ -19,7 +19,7 @@ namespace Library.WEB.Controllers
         public IActionResult Get()
         {
             var publications = _publicationsService.GetAll();
-            return Ok(publications);
+            return Ok(publications.Publications);
         }
     }
 }
